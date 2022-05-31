@@ -1,0 +1,8 @@
+.hidden {display:none !important}
+.show {display:block !important}
+
+.bg-not-available {background-color:#E23A2C !important; color:#ffffff}
+.bg-available {background-color:#4D5871 !important; color:#ffffff}
+
+.booking-list .card {text-align:left; background-color:#26293B; width: 18rem;color:#ffffff}
+.booking-list .row .card:not(:last-child) {margin-right:20px;}

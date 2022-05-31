@@ -46,6 +46,7 @@ class Hybrid {
 		hybrid_include('includes/config/token.php'); 
 
 		//Include controllers.
+		hybrid_include('includes/controllers/blok-bookings.php'); 
 
 		//Include shortcodes.
 		hybrid_include('includes/shortcodes/forms.php');
