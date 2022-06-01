@@ -21,7 +21,7 @@ define('UPLISTING_AVAILABILITY_API', 'https://connect.uplisting.io/availability'
 * @variables
 * lising_id: 40149
 */
-define('UPLISTING_CALENDAR_API', 'https://connect.uplisting.io/calendar/:listing_id');
+define('UPLISTING_CALENDAR_API', 'https://connect.uplisting.io/calendar');
 
 
 

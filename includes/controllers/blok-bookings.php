@@ -11,23 +11,27 @@ add_action('wp_ajax_nopriv_blok_get_properties', 'blok_get_properties');
 
 function blok_get_bookings() {
 
-    $property_id = sanitize_text_field($_POST['property_id']);
-    // $check_in    = sanitize_text_field($_POST['check_in']);
-    // $check_out   = sanitize_text_field($_POST['check_out']);
-
-    $check_in = '2022-05-01';
-    $check_out= '2022-07-03';
+  $property_id = sanitize_text_field($_POST['property_id']);
+  $check_in    = sanitize_text_field($_POST['check_in']);
+  $check_out   = sanitize_text_field($_POST['check_out']);
 
 	$token = base64_encode(UPLISTING_API_KEY);
 
-	$calendar = hybrid_curl(UPLISTING_CALENDAR_API.'?'.http_build_query([
+	$calendar = hybrid_curl(UPLISTING_CALENDAR_API.'/'.$property_id.'?'.http_build_query([
         'from'=> $check_in,
-        'to'  => $check_out,
-        'listing_id' => 40149
-      ]), [], 'GET', ['Content-Type:application/json', 'Authorization:Basic '.$token ]);
+        'to'  => $check_out
+      ]), [], 'GET', ['Content-Type:application/json', 'Authorization:Basic '.$token]);
 
-      echo '<pre>'; print_r($calendar); exit;
+  $bookings = $calendar['calendar']['days'];
 
+  if ( isset($bookings) && !empty($bookings) ) {
+    echo json_encode(['status' => true, 'msg' => 'Bookings found.', 'data' => $bookings]);
+  }
+  else {
+    echo json_encode(['status' => false, 'msg' => 'No bookings found.', 'data' => '']);
+  }
+     
+  exit;
 }
 
 function blok_create_bookings() {

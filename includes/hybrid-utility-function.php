@@ -43,6 +43,7 @@ function hybrid_curl($api_url, $post_data=[], $request_type = 'POST', $headers =
 	curl_setopt($curl_init, CURLOPT_RETURNTRANSFER, true);
 	$api_response = curl_exec($curl_init);
 	curl_close($curl_init);
+
  	$result = json_decode($api_response, true);
 
 	return $result;
