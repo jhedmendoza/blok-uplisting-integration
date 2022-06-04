@@ -1,12 +1,17 @@
 <form action="#" method="get" name="searchForm" class="booking-form" id="bookingForm">
     <div class="form-row">
 
+        <!-- <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name">
+        </div> -->
+
         <div class="form-group">
             <label for="property">Property</label>
             <select id="property" name="property">
                 <option value="">Select Property</option>
                 <?php foreach ($attributes as $value): ?>
-                <option value="<?php echo $value['id'] ?>"><?php echo $value['property_name'] ?></option>
+                <option <?php echo (!$value['has_property'] ? 'disabled' : '') ?> value="<?php echo ($value['has_property'] ? $value['id'] : '') ?>"><?php echo $value['property_name'] ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -29,35 +34,14 @@
   </swal-title>
   <swal-html>
       <div class="preloader">
-        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
       </div>
-      <div class="container bookings mb-5 hidden">
-          <div class="row">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text"><i class="fa fa-solid fa-calendar-day"></i> 2022-07-02</p>
-                    <p class="card-text"><i class="fa fa-solid fa-money-bill-1-wave"></i> 99.0</p>
-                    <a href="#" class="card-link btn btn-primary">Book</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text"><i class="fa fa-solid fa-calendar-day"></i> 2022-07-02</p>
-                    <p class="card-text"><i class="fa fa-solid fa-money-bill-1-wave"></i> 99.0</p>
-                    <a href="#" class="card-link btn btn-primary">Book</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text"><i class="fa fa-solid fa-calendar-day"></i> 2022-07-02</p>
-                    <p class="card-text"><i class="fa fa-solid fa-money-bill-1-wave"></i> 99.0</p>
-                    <a href="#" class="card-link btn btn-primary">Book</a>
-                </div>
-            </div>
-          </div>
-      </div>    
+      <div class="container bookings mb-5 hidden"></div>    
   </swal-html>
 
   <swal-param name="allowEscapeKey" value="false" />

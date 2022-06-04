@@ -30,3 +30,8 @@ define('UPLISTING_CALENDAR_API', 'https://connect.uplisting.io/calendar');
 * @params: none
 */
 define('UPLISTING_PROPERTIES_API', 'https://connect.uplisting.io/properties');
+
+
+define('AIRBNB_LISTING_URL', 'https://www.airbnb.com/users/325595923/listings');
+
+define('AIRBNB_PROPERTY_URL', 'https://www.airbnb.com/rooms');

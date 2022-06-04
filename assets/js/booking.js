@@ -13,7 +13,25 @@
             var checkin    = $('#check-in').val();
             var checkout   = $('#check-out').val();
 
-            getBookings(propertyID, checkin, checkout);
+            createBooking(propertyID, checkin, checkout);
+        });
+
+        $('.uabb-button').on('click', function(e) {
+          e.preventDefault();
+          var __propertyIDs = JSON.parse(propertyIDs);
+          var __uplistingID = __propertyIDs[uplistingPropertyID];
+
+          if (typeof __uplistingID != 'undefined')
+          {
+            createBooking(__uplistingID, '', '');
+          }
+          else {
+            Swal.fire({
+              icon: 'error',
+              title: 'No bookings found',
+            })
+          }
+
         });
 
     }
@@ -69,11 +87,11 @@
               // here are the three columns
               html += '<div class="card '+bgColor+'">';
               html += '<div class="card-body">';
-              html += '<p class="card-text"><i class="fa fa-solid fa-calendar-day"></i> '+e.date+'</p>';
-              html += '<p class="card-text">price: $'+e.day_rate+'</p>';
+              html += '<p class="card-text"><i class="fa fa-solid fa-calendar-day"></i><span class="booking-date"> '+e.date+'</span></p>';
+              html += '<p class="card-text">price: $'+'<span class="booking-price">'+e.day_rate+'</span></p>';
               html += '<p class="card-text">minimum length of stay: '+e.minimum_length_of_stay+'</p>';
               html += '<p class="card-text">maximum available nights: '+e.maximum_available_nights+'</p>';
-              html += '<a style="'+availability+'" href="#" class="card-link btn btn-primary mt-4">Book</a>';
+              html += '<a style="'+availability+'" href="#" class="card-link btn btn-primary book-now mt-4">Book</a>';
               html += '</div>';
               html += '</div>';
           
@@ -101,11 +119,17 @@
         },
       });
 
-
-    
     }
 
-    function createBooking() {}
+    function createBooking(propertyID, checkin, checkout) {
+      var url = '';
 
+      if (checkin != '' && checkout != '')
+        url = bookingUrl+'/'+propertyID+'?check_in='+checkin+'&check_out='+checkout;
+      else  
+        url = bookingUrl+'/'+propertyID;
 
+      window.location.replace(url);
+    }
+    
 }(jQuery));

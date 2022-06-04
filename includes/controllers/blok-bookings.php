@@ -39,5 +39,22 @@ function blok_create_bookings() {
 }
 
 function blok_get_properties() {
+	$property_ids = include HYBRID_PATH.'includes/config/property_ids.php'; 
+	$token = base64_encode(UPLISTING_API_KEY);
 
+	$properties = hybrid_curl(UPLISTING_PROPERTIES_API, [], 'GET', [
+		'Content-Type:application/json',
+		'Authorization:Basic '.$token 
+	]);
+
+	foreach ($properties['data'] as $property) {
+		$uplisting_id = $property['id'];
+		$results[] = array(
+			'id'            => isset($property_ids[$uplisting_id]) ? $property_ids[$uplisting_id] : $uplisting_id,
+      'has_property'  => isset($property_ids[$uplisting_id]) ? 1 : 0,
+			'property_name' => $property['attributes']['name']
+		);
+	}
+
+  return $results;
 }
