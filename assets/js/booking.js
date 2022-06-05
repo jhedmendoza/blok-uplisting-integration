@@ -6,6 +6,8 @@
 
     function init() {
 
+      getProperties();
+
         $('#check-availability').on('click', function(e) {
             e.preventDefault();
 
@@ -37,6 +39,34 @@
     }
 
     function getProperties() {
+      if (xhr && xhr.readyState != 4) xhr.abort();
+
+      xhr = $.ajax({
+        url: pluginAjaxUrl,
+        data: {
+          'action':'blok_get_properties',
+        },
+        method: 'GET',
+        beforeSend: function() {},
+        complete: function() {
+          $('#property').removeClass('hidden');
+          $('.d-preloader').addClass('hidden');
+        },
+        success: function(result) {
+          
+          var resp = JSON.parse(result);
+          var properties = "";
+
+          if (resp.status) {
+            $.each(resp.data, function(i, e) {
+              var val = (e.has_property) ? e.id : '';
+              var isDisabled = (e.has_property)? '' : 'disabled';
+              properties+='<option '+isDisabled+' value="'+val+'">'+e.property_name+'</option>';
+            });  
+            $('#property').append(properties);
+          }
+        },
+      });
 
     }
 

@@ -8,12 +8,19 @@
 
         <div class="form-group">
             <label for="property">Property</label>
-            <select id="property" name="property">
+            <select id="property" name="property" class="hidden">
                 <option value="">Select Property</option>
-                <?php foreach ($attributes as $value): ?>
-                <option <?php echo (!$value['has_property'] ? 'disabled' : '') ?> value="<?php echo ($value['has_property'] ? $value['id'] : '') ?>"><?php echo $value['property_name'] ?></option>
-                <?php endforeach; ?>
+                <!-- <?php// foreach ($attributes as $value): ?>
+                <option <?php //echo (!$value['has_property'] ? 'disabled' : '') ?> value="<?php //echo ($value['has_property'] ? $value['id'] : '') ?>"><?php //echo $value['property_name'] ?></option>
+                <?php// endforeach; ?> -->
             </select>
+            <div class="d-preloader">
+                <div class="lds-facebook">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
         <div class="form-group input-date">
             <label for="check-in">Check In</label>

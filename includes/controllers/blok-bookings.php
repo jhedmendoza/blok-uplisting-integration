@@ -56,5 +56,6 @@ function blok_get_properties() {
 		);
 	}
 
-  return $results;
+  echo json_encode(['status' => true, 'msg' => 'Success', 'data' => $results]);
+  exit;
 }
