@@ -31,7 +31,6 @@ function hybrid_enqueue_script() {
 
 }
 ?>
-
 <?php function js_inline_script() { ?>
 <?php $property_ids = include HYBRID_PATH.'includes/config/property_ids.php';  ?>
 <script type="text/javascript">
