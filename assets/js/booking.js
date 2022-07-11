@@ -5,6 +5,7 @@
     $(document).ready(init);
 
     function init() {
+      $('.__search-form').clone().appendTo('.uabb-module-content:first').css('margin-top', '40px').show();
 
       getProperties();
 
@@ -18,7 +19,7 @@
             createBooking(propertyID, checkin, checkout);
         });
 
-        $('.uabb-button').on('click', function(e) {
+        $('.property-template-default .uabb-button').on('click', function(e) {
           e.preventDefault();
           var __propertyIDs = JSON.parse(propertyIDs);
           var __uplistingID = __propertyIDs[uplistingPropertyID];
